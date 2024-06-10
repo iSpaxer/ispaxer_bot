@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16.1
+    container_name: ipostgres_ispaxer_bot
+    env_file:
+      - prod.env
+#    volumes:
+#      - ./docker_data/postgres/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+
+networks:
+  default:
+    driver: bridge
+    name: docker-ispaxer-bot
