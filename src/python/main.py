@@ -1,16 +1,12 @@
 import asyncio
 import logging
 
-from aiogram.client.session.aiohttp import AiohttpSession
-from fastapi import FastAPI
-
 import src.python.router.private
 
 from aiogram import Bot, Dispatcher
 from aiogram.enums.parse_mode import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import BotCommandScopeAllPrivateChats
-from aiohttp import web
 from aiohttp import web
 
 from config import tg_config
@@ -23,12 +19,8 @@ from src.python.util.commands_for_router import all_botCommand
 from src.python.util import startup, shutdown
 
 
-
-
-
 async def main():
-    # session = AiohttpSession(proxy="http://localhost:8082/")
-    bot = Bot(token=tg_config.BOT_TOKEN,  parse_mode=ParseMode.HTML)
+    bot = Bot(token=tg_config.BOT_TOKEN, parse_mode=ParseMode.HTML)
 
     bot.list_admins = []
     dp = Dispatcher(storage=MemoryStorage())
@@ -60,12 +52,4 @@ async def main():
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-
-    app = FastAPI()
-
-
-    @app.get("/")
-    def read_root():
-        return {"Hello": "World"}
-
     asyncio.run(main())
