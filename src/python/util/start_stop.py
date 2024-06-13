@@ -3,6 +3,7 @@ from typing import Any
 from aiogram import Bot
 from sqlalchemy.ext.asyncio import AsyncEngine, async_sessionmaker, AsyncSession
 
+from src.python.config import *
 from src.python.db.engine import create_db
 
 
@@ -15,4 +16,5 @@ async def startup(
 
 
 async def shutdown() -> Any:
+    # rabbit_mq_connection.cancell()
     print("Бот лёг")

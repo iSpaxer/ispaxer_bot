@@ -16,11 +16,12 @@ class CommandService:
             message: Message,
             session: AsyncSession
     ):
-        session.add(
+        await session.merge(
             User(
                 id=message.from_user.id,
-                username=message.from_user.username,
+                username="message.from_user.username",
                 # creation_date_time=datetime.now
             )
         )
-        await session.commit()
+        # raise ValueError("error")
+        await session.flush()

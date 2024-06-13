@@ -9,7 +9,7 @@ engine = create_async_engine(
     echo=True
 )
 
-session_maker = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
+session_maker = async_sessionmaker(bind=engine, expire_on_commit=False)
 
 
 async def create_db():

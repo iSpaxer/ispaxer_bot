@@ -1,29 +1,31 @@
 import asyncio
-import logging
-
-import src.python.router.private
 
 from aiogram import Bot, Dispatcher
 from aiogram.enums.parse_mode import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import BotCommandScopeAllPrivateChats
-from aiohttp import web
 
-from config import tg_config
+from config import *
 from db.engine import *
 from middleware import DbSessionMiddleware
+from src.python.rabbitmq import aio_rabbit
 from src.python.router.advice.advice_router import advice_router
 from src.python.router.group import group_routers
 from src.python.router.private import private_routers
-from src.python.util.commands_for_router import all_botCommand
 from src.python.util import startup, shutdown
+from src.python.util.commands_for_router import all_botCommand
 
+bot = Bot(token=BOT_TOKEN, parse_mode=ParseMode.HTML)
 
 async def main():
-    bot = Bot(token=tg_config.BOT_TOKEN, parse_mode=ParseMode.HTML)
+    # await aio_rabbit.main()
+
+    # bot = Bot(token=BOT_TOKEN, parse_mode=ParseMode.HTML)
 
     bot.list_admins = []
     dp = Dispatcher(storage=MemoryStorage())
+
+    rabbit_mq_connection = asyncio.create_task(aio_rabbit.main(bot, dp))
 
     #### include Private chat router ########
     for pr_router in private_routers:
@@ -50,6 +52,12 @@ async def main():
     await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())
 
 
+# async def start():
+#     t1 = asyncio.create_task(main())
+#     t2 = asyncio.create_task(aio_rabbit.main())
+#     await t2
+#     await t1
+
+
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
     asyncio.run(main())
