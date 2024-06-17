@@ -3,7 +3,7 @@ from aiogram.types import Message
 from geopy.distance import geodesic as GD
 
 
-from src.python.static import stickers
+from src.python.static import dino_stickers
 
 
 user_data_router = Router(name="user_data_router")

@@ -1,1 +1,1 @@
-from .stickers import *
+from .dino_stickers import *

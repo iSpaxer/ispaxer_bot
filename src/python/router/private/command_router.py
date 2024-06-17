@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.python.keyboard import reply, inline
 from src.python.service.CommandService import CommandService
-from src.python.static import stickers
+from src.python.static import dino_stickers as stickers
 from src.python.util.commands_for_router import cmd_del_kb, cmd_id, cmd_share, cmd_register, cmd_inline
 
 router = Router(name="command_router")

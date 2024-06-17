@@ -8,4 +8,4 @@ private_routers = [
     callback_router, command_router, fsm_router, user_data_router
 ]
 for router in private_routers:
-    router.message.filter(ChatTypeFilter(["private"]))  # todo
+    router.message.filter(ChatTypeFilter(["private"]))
