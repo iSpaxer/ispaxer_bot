@@ -7,6 +7,8 @@ cmd_share = "share"
 cmd_register = "register"
 cmd_inline = "inline"
 cmd_add = "add"
+cmd_pay = "pay"
+
 
 all_botCommand = [
     BotCommand(command=cmd_start, description="Стартовая команда."),
@@ -16,4 +18,6 @@ all_botCommand = [
     BotCommand(command=cmd_register, description="Зарегистрироваться в боте"),
     BotCommand(command=cmd_inline, description="Получить инлайн кнопки"),
     BotCommand(command=cmd_add, description="Добавить товар"),
+    BotCommand(command=cmd_pay, description="Оплатить товар"),
+
 ]

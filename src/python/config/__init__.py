@@ -1,7 +1,7 @@
 from .postgres_config import *
-from .tg_config import BOT_TOKEN, rabbit_mq_connection
+from .tg_config import BOT_TOKEN
 
 __all__ = [
-    "BOT_TOKEN", "rabbit_mq_connection"
+    "BOT_TOKEN"
 ]
 
