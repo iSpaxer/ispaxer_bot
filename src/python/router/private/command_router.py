@@ -34,7 +34,7 @@ async def cmd_id(message: Message):
 
 @router.message(Command(cmd_share))
 async def cmd_share(message: Message):
-    await message.answer_sticker(stickers.THOUGHT)
+    # await message.answer_sticker(stickers.THOUGHT)
     await message.answer(
         text="Выбирайте чем хотите поделиться со мной!",
         reply_markup=reply.kb_share.as_markup(
